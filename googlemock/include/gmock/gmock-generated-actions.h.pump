@@ -2,7 +2,7 @@ $$ -*- mode: c++; -*-
 $$ This is a Pump source file. Please use Pump to convert it to
 $$ gmock-generated-actions.h.
 $$
-$var n = 10  $$ The maximum arity we support.
+$var n = 15  $$ The maximum arity we support.
 $$}} This meta comment fixes auto-indentation in editors.
 // Copyright 2007, Google Inc.
 // All rights reserved.
@@ -637,7 +637,8 @@ $for k [[, arg$k[[]]_type arg$k]]) const;\
   template <typename arg0_type, typename arg1_type, typename arg2_type, \
       typename arg3_type, typename arg4_type, typename arg5_type, \
       typename arg6_type, typename arg7_type, typename arg8_type, \
-      typename arg9_type>\
+      typename arg9_type, typename arg10_type, typename arg11_type, \
+      typename arg12_type, typename arg13_type, typename arg14_type>\
   typename ::testing::internal::Function<F>::Result\
       GMOCK_ACTION_CLASS_(name, value_params)<\
           GMOCK_INTERNAL_LIST_##template_params\
