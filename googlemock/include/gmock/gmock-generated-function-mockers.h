@@ -41,6 +41,8 @@
 #ifndef GMOCK_INCLUDE_GMOCK_GMOCK_GENERATED_FUNCTION_MOCKERS_H_
 #define GMOCK_INCLUDE_GMOCK_GMOCK_GENERATED_FUNCTION_MOCKERS_H_
 
+#include <utility>
+
 #include "gmock/gmock-spec-builders.h"
 #include "gmock/internal/gmock-internal-utils.h"
 
@@ -70,7 +72,7 @@ class FunctionMocker<R()> : public
   typedef typename internal::Function<F>::ArgumentTuple ArgumentTuple;
 
   MockSpec<F> With() {
-    return MockSpec<F>(this, ::testing::make_tuple());
+    return MockSpec<F>(this, ::std::make_tuple());
   }
 
   R Invoke() {
@@ -90,7 +92,7 @@ class FunctionMocker<R(A1)> : public
   typedef typename internal::Function<F>::ArgumentTuple ArgumentTuple;
 
   MockSpec<F> With(const Matcher<A1>& m1) {
-    return MockSpec<F>(this, ::testing::make_tuple(m1));
+    return MockSpec<F>(this, ::std::make_tuple(m1));
   }
 
   R Invoke(A1 a1) {
@@ -98,7 +100,7 @@ class FunctionMocker<R(A1)> : public
     // by the C++ standard [14.6.4] here, as the base class type is
     // dependent on the template argument (and thus shouldn't be
     // looked into when resolving InvokeWith).
-    return this->InvokeWith(ArgumentTuple(internal::forward<A1>(a1)));
+    return this->InvokeWith(ArgumentTuple(std::forward<A1>(a1)));
   }
 };
 
@@ -110,7 +112,7 @@ class FunctionMocker<R(A1, A2)> : public
   typedef typename internal::Function<F>::ArgumentTuple ArgumentTuple;
 
   MockSpec<F> With(const Matcher<A1>& m1, const Matcher<A2>& m2) {
-    return MockSpec<F>(this, ::testing::make_tuple(m1, m2));
+    return MockSpec<F>(this, ::std::make_tuple(m1, m2));
   }
 
   R Invoke(A1 a1, A2 a2) {
@@ -118,8 +120,8 @@ class FunctionMocker<R(A1, A2)> : public
     // by the C++ standard [14.6.4] here, as the base class type is
     // dependent on the template argument (and thus shouldn't be
     // looked into when resolving InvokeWith).
-    return this->InvokeWith(ArgumentTuple(internal::forward<A1>(a1),
-        internal::forward<A2>(a2)));
+    return this->InvokeWith(ArgumentTuple(std::forward<A1>(a1),
+        std::forward<A2>(a2)));
   }
 };
 
@@ -132,7 +134,7 @@ class FunctionMocker<R(A1, A2, A3)> : public
 
   MockSpec<F> With(const Matcher<A1>& m1, const Matcher<A2>& m2,
       const Matcher<A3>& m3) {
-    return MockSpec<F>(this, ::testing::make_tuple(m1, m2, m3));
+    return MockSpec<F>(this, ::std::make_tuple(m1, m2, m3));
   }
 
   R Invoke(A1 a1, A2 a2, A3 a3) {
@@ -140,8 +142,8 @@ class FunctionMocker<R(A1, A2, A3)> : public
     // by the C++ standard [14.6.4] here, as the base class type is
     // dependent on the template argument (and thus shouldn't be
     // looked into when resolving InvokeWith).
-    return this->InvokeWith(ArgumentTuple(internal::forward<A1>(a1),
-        internal::forward<A2>(a2), internal::forward<A3>(a3)));
+    return this->InvokeWith(ArgumentTuple(std::forward<A1>(a1),
+        std::forward<A2>(a2), std::forward<A3>(a3)));
   }
 };
 
@@ -154,7 +156,7 @@ class FunctionMocker<R(A1, A2, A3, A4)> : public
 
   MockSpec<F> With(const Matcher<A1>& m1, const Matcher<A2>& m2,
       const Matcher<A3>& m3, const Matcher<A4>& m4) {
-    return MockSpec<F>(this, ::testing::make_tuple(m1, m2, m3, m4));
+    return MockSpec<F>(this, ::std::make_tuple(m1, m2, m3, m4));
   }
 
   R Invoke(A1 a1, A2 a2, A3 a3, A4 a4) {
@@ -162,9 +164,8 @@ class FunctionMocker<R(A1, A2, A3, A4)> : public
     // by the C++ standard [14.6.4] here, as the base class type is
     // dependent on the template argument (and thus shouldn't be
     // looked into when resolving InvokeWith).
-    return this->InvokeWith(ArgumentTuple(internal::forward<A1>(a1),
-        internal::forward<A2>(a2), internal::forward<A3>(a3),
-        internal::forward<A4>(a4)));
+    return this->InvokeWith(ArgumentTuple(std::forward<A1>(a1),
+        std::forward<A2>(a2), std::forward<A3>(a3), std::forward<A4>(a4)));
   }
 };
 
@@ -178,7 +179,7 @@ class FunctionMocker<R(A1, A2, A3, A4, A5)> : public
 
   MockSpec<F> With(const Matcher<A1>& m1, const Matcher<A2>& m2,
       const Matcher<A3>& m3, const Matcher<A4>& m4, const Matcher<A5>& m5) {
-    return MockSpec<F>(this, ::testing::make_tuple(m1, m2, m3, m4, m5));
+    return MockSpec<F>(this, ::std::make_tuple(m1, m2, m3, m4, m5));
   }
 
   R Invoke(A1 a1, A2 a2, A3 a3, A4 a4, A5 a5) {
@@ -186,9 +187,9 @@ class FunctionMocker<R(A1, A2, A3, A4, A5)> : public
     // by the C++ standard [14.6.4] here, as the base class type is
     // dependent on the template argument (and thus shouldn't be
     // looked into when resolving InvokeWith).
-    return this->InvokeWith(ArgumentTuple(internal::forward<A1>(a1),
-        internal::forward<A2>(a2), internal::forward<A3>(a3),
-        internal::forward<A4>(a4), internal::forward<A5>(a5)));
+    return this->InvokeWith(ArgumentTuple(std::forward<A1>(a1),
+        std::forward<A2>(a2), std::forward<A3>(a3), std::forward<A4>(a4),
+        std::forward<A5>(a5)));
   }
 };
 
@@ -203,7 +204,7 @@ class FunctionMocker<R(A1, A2, A3, A4, A5, A6)> : public
   MockSpec<F> With(const Matcher<A1>& m1, const Matcher<A2>& m2,
       const Matcher<A3>& m3, const Matcher<A4>& m4, const Matcher<A5>& m5,
       const Matcher<A6>& m6) {
-    return MockSpec<F>(this, ::testing::make_tuple(m1, m2, m3, m4, m5, m6));
+    return MockSpec<F>(this, ::std::make_tuple(m1, m2, m3, m4, m5, m6));
   }
 
   R Invoke(A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6) {
@@ -211,10 +212,9 @@ class FunctionMocker<R(A1, A2, A3, A4, A5, A6)> : public
     // by the C++ standard [14.6.4] here, as the base class type is
     // dependent on the template argument (and thus shouldn't be
     // looked into when resolving InvokeWith).
-    return this->InvokeWith(ArgumentTuple(internal::forward<A1>(a1),
-        internal::forward<A2>(a2), internal::forward<A3>(a3),
-        internal::forward<A4>(a4), internal::forward<A5>(a5),
-        internal::forward<A6>(a6)));
+    return this->InvokeWith(ArgumentTuple(std::forward<A1>(a1),
+        std::forward<A2>(a2), std::forward<A3>(a3), std::forward<A4>(a4),
+        std::forward<A5>(a5), std::forward<A6>(a6)));
   }
 };
 
@@ -229,7 +229,7 @@ class FunctionMocker<R(A1, A2, A3, A4, A5, A6, A7)> : public
   MockSpec<F> With(const Matcher<A1>& m1, const Matcher<A2>& m2,
       const Matcher<A3>& m3, const Matcher<A4>& m4, const Matcher<A5>& m5,
       const Matcher<A6>& m6, const Matcher<A7>& m7) {
-    return MockSpec<F>(this, ::testing::make_tuple(m1, m2, m3, m4, m5, m6, m7));
+    return MockSpec<F>(this, ::std::make_tuple(m1, m2, m3, m4, m5, m6, m7));
   }
 
   R Invoke(A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7) {
@@ -237,10 +237,9 @@ class FunctionMocker<R(A1, A2, A3, A4, A5, A6, A7)> : public
     // by the C++ standard [14.6.4] here, as the base class type is
     // dependent on the template argument (and thus shouldn't be
     // looked into when resolving InvokeWith).
-    return this->InvokeWith(ArgumentTuple(internal::forward<A1>(a1),
-        internal::forward<A2>(a2), internal::forward<A3>(a3),
-        internal::forward<A4>(a4), internal::forward<A5>(a5),
-        internal::forward<A6>(a6), internal::forward<A7>(a7)));
+    return this->InvokeWith(ArgumentTuple(std::forward<A1>(a1),
+        std::forward<A2>(a2), std::forward<A3>(a3), std::forward<A4>(a4),
+        std::forward<A5>(a5), std::forward<A6>(a6), std::forward<A7>(a7)));
   }
 };
 
@@ -255,8 +254,7 @@ class FunctionMocker<R(A1, A2, A3, A4, A5, A6, A7, A8)> : public
   MockSpec<F> With(const Matcher<A1>& m1, const Matcher<A2>& m2,
       const Matcher<A3>& m3, const Matcher<A4>& m4, const Matcher<A5>& m5,
       const Matcher<A6>& m6, const Matcher<A7>& m7, const Matcher<A8>& m8) {
-    return MockSpec<F>(this, ::testing::make_tuple(m1, m2, m3, m4, m5, m6, m7,
-        m8));
+    return MockSpec<F>(this, ::std::make_tuple(m1, m2, m3, m4, m5, m6, m7, m8));
   }
 
   R Invoke(A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8) {
@@ -264,11 +262,10 @@ class FunctionMocker<R(A1, A2, A3, A4, A5, A6, A7, A8)> : public
     // by the C++ standard [14.6.4] here, as the base class type is
     // dependent on the template argument (and thus shouldn't be
     // looked into when resolving InvokeWith).
-    return this->InvokeWith(ArgumentTuple(internal::forward<A1>(a1),
-        internal::forward<A2>(a2), internal::forward<A3>(a3),
-        internal::forward<A4>(a4), internal::forward<A5>(a5),
-        internal::forward<A6>(a6), internal::forward<A7>(a7),
-        internal::forward<A8>(a8)));
+    return this->InvokeWith(ArgumentTuple(std::forward<A1>(a1),
+        std::forward<A2>(a2), std::forward<A3>(a3), std::forward<A4>(a4),
+        std::forward<A5>(a5), std::forward<A6>(a6), std::forward<A7>(a7),
+        std::forward<A8>(a8)));
   }
 };
 
@@ -284,8 +281,8 @@ class FunctionMocker<R(A1, A2, A3, A4, A5, A6, A7, A8, A9)> : public
       const Matcher<A3>& m3, const Matcher<A4>& m4, const Matcher<A5>& m5,
       const Matcher<A6>& m6, const Matcher<A7>& m7, const Matcher<A8>& m8,
       const Matcher<A9>& m9) {
-    return MockSpec<F>(this, ::testing::make_tuple(m1, m2, m3, m4, m5, m6, m7,
-        m8, m9));
+    return MockSpec<F>(this, ::std::make_tuple(m1, m2, m3, m4, m5, m6, m7, m8,
+        m9));
   }
 
   R Invoke(A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9) {
@@ -293,11 +290,10 @@ class FunctionMocker<R(A1, A2, A3, A4, A5, A6, A7, A8, A9)> : public
     // by the C++ standard [14.6.4] here, as the base class type is
     // dependent on the template argument (and thus shouldn't be
     // looked into when resolving InvokeWith).
-    return this->InvokeWith(ArgumentTuple(internal::forward<A1>(a1),
-        internal::forward<A2>(a2), internal::forward<A3>(a3),
-        internal::forward<A4>(a4), internal::forward<A5>(a5),
-        internal::forward<A6>(a6), internal::forward<A7>(a7),
-        internal::forward<A8>(a8), internal::forward<A9>(a9)));
+    return this->InvokeWith(ArgumentTuple(std::forward<A1>(a1),
+        std::forward<A2>(a2), std::forward<A3>(a3), std::forward<A4>(a4),
+        std::forward<A5>(a5), std::forward<A6>(a6), std::forward<A7>(a7),
+        std::forward<A8>(a8), std::forward<A9>(a9)));
   }
 };
 
@@ -314,8 +310,8 @@ class FunctionMocker<R(A1, A2, A3, A4, A5, A6, A7, A8, A9, A10)> : public
       const Matcher<A3>& m3, const Matcher<A4>& m4, const Matcher<A5>& m5,
       const Matcher<A6>& m6, const Matcher<A7>& m7, const Matcher<A8>& m8,
       const Matcher<A9>& m9, const Matcher<A10>& m10) {
-    return MockSpec<F>(this, ::testing::make_tuple(m1, m2, m3, m4, m5, m6, m7,
-        m8, m9, m10));
+    return MockSpec<F>(this, ::std::make_tuple(m1, m2, m3, m4, m5, m6, m7, m8,
+        m9, m10));
   }
 
   R Invoke(A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9,
@@ -324,12 +320,10 @@ class FunctionMocker<R(A1, A2, A3, A4, A5, A6, A7, A8, A9, A10)> : public
     // by the C++ standard [14.6.4] here, as the base class type is
     // dependent on the template argument (and thus shouldn't be
     // looked into when resolving InvokeWith).
-    return this->InvokeWith(ArgumentTuple(internal::forward<A1>(a1),
-        internal::forward<A2>(a2), internal::forward<A3>(a3),
-        internal::forward<A4>(a4), internal::forward<A5>(a5),
-        internal::forward<A6>(a6), internal::forward<A7>(a7),
-        internal::forward<A8>(a8), internal::forward<A9>(a9),
-        internal::forward<A10>(a10)));
+    return this->InvokeWith(ArgumentTuple(std::forward<A1>(a1),
+        std::forward<A2>(a2), std::forward<A3>(a3), std::forward<A4>(a4),
+        std::forward<A5>(a5), std::forward<A6>(a6), std::forward<A7>(a7),
+        std::forward<A8>(a8), std::forward<A9>(a9), std::forward<A10>(a10)));
   }
 };
 
@@ -348,8 +342,8 @@ class FunctionMocker<R(A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11)> : public
       const Matcher<A6>& m6, const Matcher<A7>& m7, const Matcher<A8>& m8,
       const Matcher<A9>& m9, const Matcher<A10>& m10,
       const Matcher<A11>& m11) {
-    return MockSpec<F>(this, ::testing::make_tuple(m1, m2, m3, m4, m5, m6, m7,
-        m8, m9, m10, m11));
+    return MockSpec<F>(this, ::std::make_tuple(m1, m2, m3, m4, m5, m6, m7, m8,
+        m9, m10, m11));
   }
 
   R Invoke(A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9,
@@ -358,12 +352,11 @@ class FunctionMocker<R(A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11)> : public
     // by the C++ standard [14.6.4] here, as the base class type is
     // dependent on the template argument (and thus shouldn't be
     // looked into when resolving InvokeWith).
-    return this->InvokeWith(ArgumentTuple(internal::forward<A1>(a1),
-        internal::forward<A2>(a2), internal::forward<A3>(a3),
-        internal::forward<A4>(a4), internal::forward<A5>(a5),
-        internal::forward<A6>(a6), internal::forward<A7>(a7),
-        internal::forward<A8>(a8), internal::forward<A9>(a9),
-        internal::forward<A10>(a10), internal::forward<A11>(a11)));
+    return this->InvokeWith(ArgumentTuple(std::forward<A1>(a1),
+        std::forward<A2>(a2), std::forward<A3>(a3), std::forward<A4>(a4),
+        std::forward<A5>(a5), std::forward<A6>(a6), std::forward<A7>(a7),
+        std::forward<A8>(a8), std::forward<A9>(a9), std::forward<A10>(a10),
+        std::forward<A11>(a11)));
   }
 };
 
@@ -383,8 +376,8 @@ class FunctionMocker<R(A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11,
       const Matcher<A6>& m6, const Matcher<A7>& m7, const Matcher<A8>& m8,
       const Matcher<A9>& m9, const Matcher<A10>& m10, const Matcher<A11>& m11,
       const Matcher<A12>& m12) {
-    return MockSpec<F>(this, ::testing::make_tuple(m1, m2, m3, m4, m5, m6, m7,
-        m8, m9, m10, m11, m12));
+    return MockSpec<F>(this, ::std::make_tuple(m1, m2, m3, m4, m5, m6, m7, m8,
+        m9, m10, m11, m12));
   }
 
   R Invoke(A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9,
@@ -393,13 +386,11 @@ class FunctionMocker<R(A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11,
     // by the C++ standard [14.6.4] here, as the base class type is
     // dependent on the template argument (and thus shouldn't be
     // looked into when resolving InvokeWith).
-    return this->InvokeWith(ArgumentTuple(internal::forward<A1>(a1),
-        internal::forward<A2>(a2), internal::forward<A3>(a3),
-        internal::forward<A4>(a4), internal::forward<A5>(a5),
-        internal::forward<A6>(a6), internal::forward<A7>(a7),
-        internal::forward<A8>(a8), internal::forward<A9>(a9),
-        internal::forward<A10>(a10), internal::forward<A11>(a11),
-        internal::forward<A12>(a12)));
+    return this->InvokeWith(ArgumentTuple(std::forward<A1>(a1),
+        std::forward<A2>(a2), std::forward<A3>(a3), std::forward<A4>(a4),
+        std::forward<A5>(a5), std::forward<A6>(a6), std::forward<A7>(a7),
+        std::forward<A8>(a8), std::forward<A9>(a9), std::forward<A10>(a10),
+        std::forward<A11>(a11), std::forward<A12>(a12)));
   }
 };
 
@@ -419,8 +410,8 @@ class FunctionMocker<R(A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12,
       const Matcher<A6>& m6, const Matcher<A7>& m7, const Matcher<A8>& m8,
       const Matcher<A9>& m9, const Matcher<A10>& m10, const Matcher<A11>& m11,
       const Matcher<A12>& m12, const Matcher<A13>& m13) {
-    return MockSpec<F>(this, ::testing::make_tuple(m1, m2, m3, m4, m5, m6, m7,
-        m8, m9, m10, m11, m12, m13));
+    return MockSpec<F>(this, ::std::make_tuple(m1, m2, m3, m4, m5, m6, m7, m8,
+        m9, m10, m11, m12, m13));
   }
 
   R Invoke(A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9,
@@ -429,13 +420,12 @@ class FunctionMocker<R(A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12,
     // by the C++ standard [14.6.4] here, as the base class type is
     // dependent on the template argument (and thus shouldn't be
     // looked into when resolving InvokeWith).
-    return this->InvokeWith(ArgumentTuple(internal::forward<A1>(a1),
-        internal::forward<A2>(a2), internal::forward<A3>(a3),
-        internal::forward<A4>(a4), internal::forward<A5>(a5),
-        internal::forward<A6>(a6), internal::forward<A7>(a7),
-        internal::forward<A8>(a8), internal::forward<A9>(a9),
-        internal::forward<A10>(a10), internal::forward<A11>(a11),
-        internal::forward<A12>(a12), internal::forward<A13>(a13)));
+    return this->InvokeWith(ArgumentTuple(std::forward<A1>(a1),
+        std::forward<A2>(a2), std::forward<A3>(a3), std::forward<A4>(a4),
+        std::forward<A5>(a5), std::forward<A6>(a6), std::forward<A7>(a7),
+        std::forward<A8>(a8), std::forward<A9>(a9), std::forward<A10>(a10),
+        std::forward<A11>(a11), std::forward<A12>(a12),
+        std::forward<A13>(a13)));
   }
 };
 
@@ -456,8 +446,8 @@ class FunctionMocker<R(A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, A13,
       const Matcher<A9>& m9, const Matcher<A10>& m10, const Matcher<A11>& m11,
       const Matcher<A12>& m12, const Matcher<A13>& m13,
       const Matcher<A14>& m14) {
-    return MockSpec<F>(this, ::testing::make_tuple(m1, m2, m3, m4, m5, m6, m7,
-        m8, m9, m10, m11, m12, m13, m14));
+    return MockSpec<F>(this, ::std::make_tuple(m1, m2, m3, m4, m5, m6, m7, m8,
+        m9, m10, m11, m12, m13, m14));
   }
 
   R Invoke(A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9,
@@ -466,14 +456,12 @@ class FunctionMocker<R(A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, A13,
     // by the C++ standard [14.6.4] here, as the base class type is
     // dependent on the template argument (and thus shouldn't be
     // looked into when resolving InvokeWith).
-    return this->InvokeWith(ArgumentTuple(internal::forward<A1>(a1),
-        internal::forward<A2>(a2), internal::forward<A3>(a3),
-        internal::forward<A4>(a4), internal::forward<A5>(a5),
-        internal::forward<A6>(a6), internal::forward<A7>(a7),
-        internal::forward<A8>(a8), internal::forward<A9>(a9),
-        internal::forward<A10>(a10), internal::forward<A11>(a11),
-        internal::forward<A12>(a12), internal::forward<A13>(a13),
-        internal::forward<A14>(a14)));
+    return this->InvokeWith(ArgumentTuple(std::forward<A1>(a1),
+        std::forward<A2>(a2), std::forward<A3>(a3), std::forward<A4>(a4),
+        std::forward<A5>(a5), std::forward<A6>(a6), std::forward<A7>(a7),
+        std::forward<A8>(a8), std::forward<A9>(a9), std::forward<A10>(a10),
+        std::forward<A11>(a11), std::forward<A12>(a12), std::forward<A13>(a13),
+        std::forward<A14>(a14)));
   }
 };
 
@@ -495,8 +483,8 @@ class FunctionMocker<R(A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, A13,
       const Matcher<A9>& m9, const Matcher<A10>& m10, const Matcher<A11>& m11,
       const Matcher<A12>& m12, const Matcher<A13>& m13,
       const Matcher<A14>& m14, const Matcher<A15>& m15) {
-    return MockSpec<F>(this, ::testing::make_tuple(m1, m2, m3, m4, m5, m6, m7,
-        m8, m9, m10, m11, m12, m13, m14, m15));
+    return MockSpec<F>(this, ::std::make_tuple(m1, m2, m3, m4, m5, m6, m7, m8,
+        m9, m10, m11, m12, m13, m14, m15));
   }
 
   R Invoke(A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9,
@@ -505,14 +493,12 @@ class FunctionMocker<R(A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, A13,
     // by the C++ standard [14.6.4] here, as the base class type is
     // dependent on the template argument (and thus shouldn't be
     // looked into when resolving InvokeWith).
-    return this->InvokeWith(ArgumentTuple(internal::forward<A1>(a1),
-        internal::forward<A2>(a2), internal::forward<A3>(a3),
-        internal::forward<A4>(a4), internal::forward<A5>(a5),
-        internal::forward<A6>(a6), internal::forward<A7>(a7),
-        internal::forward<A8>(a8), internal::forward<A9>(a9),
-        internal::forward<A10>(a10), internal::forward<A11>(a11),
-        internal::forward<A12>(a12), internal::forward<A13>(a13),
-        internal::forward<A14>(a14), internal::forward<A15>(a15)));
+    return this->InvokeWith(ArgumentTuple(std::forward<A1>(a1),
+        std::forward<A2>(a2), std::forward<A3>(a3), std::forward<A4>(a4),
+        std::forward<A5>(a5), std::forward<A6>(a6), std::forward<A7>(a7),
+        std::forward<A8>(a8), std::forward<A9>(a9), std::forward<A10>(a10),
+        std::forward<A11>(a11), std::forward<A12>(a12), std::forward<A13>(a13),
+        std::forward<A14>(a14), std::forward<A15>(a15)));
   }
 };
 
@@ -604,7 +590,7 @@ using internal::FunctionMocker;
 #define GMOCK_METHOD0_(tn, constness, ct, Method, ...) \
   GMOCK_RESULT_(tn, __VA_ARGS__) ct Method( \
       ) constness { \
-    GTEST_COMPILE_ASSERT_((::testing::tuple_size<                          \
+    GTEST_COMPILE_ASSERT_((::std::tuple_size<                          \
         tn ::testing::internal::Function<__VA_ARGS__>::ArgumentTuple>::value \
             == 0), \
         this_method_does_not_take_0_arguments); \
@@ -629,13 +615,13 @@ using internal::FunctionMocker;
 #define GMOCK_METHOD1_(tn, constness, ct, Method, ...) \
   GMOCK_RESULT_(tn, __VA_ARGS__) ct Method( \
       GMOCK_ARG_(tn, 1, __VA_ARGS__) gmock_a1) constness { \
-    GTEST_COMPILE_ASSERT_((::testing::tuple_size<                          \
+    GTEST_COMPILE_ASSERT_((::std::tuple_size<                          \
         tn ::testing::internal::Function<__VA_ARGS__>::ArgumentTuple>::value \
             == 1), \
         this_method_does_not_take_1_argument); \
     GMOCK_MOCKER_(1, constness, Method).SetOwnerAndName(this, #Method); \
     return GMOCK_MOCKER_(1, constness, \
-        Method).Invoke(::testing::internal::forward<GMOCK_ARG_(tn, 1, \
+        Method).Invoke(::std::forward<GMOCK_ARG_(tn, 1, \
         __VA_ARGS__)>(gmock_a1)); \
   } \
   ::testing::MockSpec<__VA_ARGS__> \
@@ -657,15 +643,15 @@ using internal::FunctionMocker;
   GMOCK_RESULT_(tn, __VA_ARGS__) ct Method( \
       GMOCK_ARG_(tn, 1, __VA_ARGS__) gmock_a1, GMOCK_ARG_(tn, 2, \
           __VA_ARGS__) gmock_a2) constness { \
-    GTEST_COMPILE_ASSERT_((::testing::tuple_size<                          \
+    GTEST_COMPILE_ASSERT_((::std::tuple_size<                          \
         tn ::testing::internal::Function<__VA_ARGS__>::ArgumentTuple>::value \
             == 2), \
         this_method_does_not_take_2_arguments); \
     GMOCK_MOCKER_(2, constness, Method).SetOwnerAndName(this, #Method); \
     return GMOCK_MOCKER_(2, constness, \
-        Method).Invoke(::testing::internal::forward<GMOCK_ARG_(tn, 1, \
+        Method).Invoke(::std::forward<GMOCK_ARG_(tn, 1, \
         __VA_ARGS__)>(gmock_a1), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2)); \
+  ::std::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2)); \
   } \
   ::testing::MockSpec<__VA_ARGS__> \
       gmock_##Method(GMOCK_MATCHER_(tn, 1, __VA_ARGS__) gmock_a1, \
@@ -689,16 +675,16 @@ using internal::FunctionMocker;
       GMOCK_ARG_(tn, 1, __VA_ARGS__) gmock_a1, GMOCK_ARG_(tn, 2, \
           __VA_ARGS__) gmock_a2, GMOCK_ARG_(tn, 3, \
           __VA_ARGS__) gmock_a3) constness { \
-    GTEST_COMPILE_ASSERT_((::testing::tuple_size<                          \
+    GTEST_COMPILE_ASSERT_((::std::tuple_size<                          \
         tn ::testing::internal::Function<__VA_ARGS__>::ArgumentTuple>::value \
             == 3), \
         this_method_does_not_take_3_arguments); \
     GMOCK_MOCKER_(3, constness, Method).SetOwnerAndName(this, #Method); \
     return GMOCK_MOCKER_(3, constness, \
-        Method).Invoke(::testing::internal::forward<GMOCK_ARG_(tn, 1, \
+        Method).Invoke(::std::forward<GMOCK_ARG_(tn, 1, \
         __VA_ARGS__)>(gmock_a1), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3)); \
+  ::std::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
+  ::std::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3)); \
   } \
   ::testing::MockSpec<__VA_ARGS__> \
       gmock_##Method(GMOCK_MATCHER_(tn, 1, __VA_ARGS__) gmock_a1, \
@@ -725,17 +711,17 @@ using internal::FunctionMocker;
       GMOCK_ARG_(tn, 1, __VA_ARGS__) gmock_a1, GMOCK_ARG_(tn, 2, \
           __VA_ARGS__) gmock_a2, GMOCK_ARG_(tn, 3, __VA_ARGS__) gmock_a3, \
           GMOCK_ARG_(tn, 4, __VA_ARGS__) gmock_a4) constness { \
-    GTEST_COMPILE_ASSERT_((::testing::tuple_size<                          \
+    GTEST_COMPILE_ASSERT_((::std::tuple_size<                          \
         tn ::testing::internal::Function<__VA_ARGS__>::ArgumentTuple>::value \
             == 4), \
         this_method_does_not_take_4_arguments); \
     GMOCK_MOCKER_(4, constness, Method).SetOwnerAndName(this, #Method); \
     return GMOCK_MOCKER_(4, constness, \
-        Method).Invoke(::testing::internal::forward<GMOCK_ARG_(tn, 1, \
+        Method).Invoke(::std::forward<GMOCK_ARG_(tn, 1, \
         __VA_ARGS__)>(gmock_a1), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4)); \
+  ::std::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
+  ::std::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
+  ::std::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4)); \
   } \
   ::testing::MockSpec<__VA_ARGS__> \
       gmock_##Method(GMOCK_MATCHER_(tn, 1, __VA_ARGS__) gmock_a1, \
@@ -765,18 +751,18 @@ using internal::FunctionMocker;
           __VA_ARGS__) gmock_a2, GMOCK_ARG_(tn, 3, __VA_ARGS__) gmock_a3, \
           GMOCK_ARG_(tn, 4, __VA_ARGS__) gmock_a4, GMOCK_ARG_(tn, 5, \
           __VA_ARGS__) gmock_a5) constness { \
-    GTEST_COMPILE_ASSERT_((::testing::tuple_size<                          \
+    GTEST_COMPILE_ASSERT_((::std::tuple_size<                          \
         tn ::testing::internal::Function<__VA_ARGS__>::ArgumentTuple>::value \
             == 5), \
         this_method_does_not_take_5_arguments); \
     GMOCK_MOCKER_(5, constness, Method).SetOwnerAndName(this, #Method); \
     return GMOCK_MOCKER_(5, constness, \
-        Method).Invoke(::testing::internal::forward<GMOCK_ARG_(tn, 1, \
+        Method).Invoke(::std::forward<GMOCK_ARG_(tn, 1, \
         __VA_ARGS__)>(gmock_a1), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 5, __VA_ARGS__)>(gmock_a5)); \
+  ::std::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
+  ::std::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
+  ::std::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4), \
+  ::std::forward<GMOCK_ARG_(tn, 5, __VA_ARGS__)>(gmock_a5)); \
   } \
   ::testing::MockSpec<__VA_ARGS__> \
       gmock_##Method(GMOCK_MATCHER_(tn, 1, __VA_ARGS__) gmock_a1, \
@@ -809,19 +795,19 @@ using internal::FunctionMocker;
           GMOCK_ARG_(tn, 4, __VA_ARGS__) gmock_a4, GMOCK_ARG_(tn, 5, \
           __VA_ARGS__) gmock_a5, GMOCK_ARG_(tn, 6, \
           __VA_ARGS__) gmock_a6) constness { \
-    GTEST_COMPILE_ASSERT_((::testing::tuple_size<                          \
+    GTEST_COMPILE_ASSERT_((::std::tuple_size<                          \
         tn ::testing::internal::Function<__VA_ARGS__>::ArgumentTuple>::value \
             == 6), \
         this_method_does_not_take_6_arguments); \
     GMOCK_MOCKER_(6, constness, Method).SetOwnerAndName(this, #Method); \
     return GMOCK_MOCKER_(6, constness, \
-        Method).Invoke(::testing::internal::forward<GMOCK_ARG_(tn, 1, \
+        Method).Invoke(::std::forward<GMOCK_ARG_(tn, 1, \
         __VA_ARGS__)>(gmock_a1), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 5, __VA_ARGS__)>(gmock_a5), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 6, __VA_ARGS__)>(gmock_a6)); \
+  ::std::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
+  ::std::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
+  ::std::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4), \
+  ::std::forward<GMOCK_ARG_(tn, 5, __VA_ARGS__)>(gmock_a5), \
+  ::std::forward<GMOCK_ARG_(tn, 6, __VA_ARGS__)>(gmock_a6)); \
   } \
   ::testing::MockSpec<__VA_ARGS__> \
       gmock_##Method(GMOCK_MATCHER_(tn, 1, __VA_ARGS__) gmock_a1, \
@@ -856,20 +842,20 @@ using internal::FunctionMocker;
           GMOCK_ARG_(tn, 4, __VA_ARGS__) gmock_a4, GMOCK_ARG_(tn, 5, \
           __VA_ARGS__) gmock_a5, GMOCK_ARG_(tn, 6, __VA_ARGS__) gmock_a6, \
           GMOCK_ARG_(tn, 7, __VA_ARGS__) gmock_a7) constness { \
-    GTEST_COMPILE_ASSERT_((::testing::tuple_size<                          \
+    GTEST_COMPILE_ASSERT_((::std::tuple_size<                          \
         tn ::testing::internal::Function<__VA_ARGS__>::ArgumentTuple>::value \
             == 7), \
         this_method_does_not_take_7_arguments); \
     GMOCK_MOCKER_(7, constness, Method).SetOwnerAndName(this, #Method); \
     return GMOCK_MOCKER_(7, constness, \
-        Method).Invoke(::testing::internal::forward<GMOCK_ARG_(tn, 1, \
+        Method).Invoke(::std::forward<GMOCK_ARG_(tn, 1, \
         __VA_ARGS__)>(gmock_a1), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 5, __VA_ARGS__)>(gmock_a5), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 6, __VA_ARGS__)>(gmock_a6), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 7, __VA_ARGS__)>(gmock_a7)); \
+  ::std::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
+  ::std::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
+  ::std::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4), \
+  ::std::forward<GMOCK_ARG_(tn, 5, __VA_ARGS__)>(gmock_a5), \
+  ::std::forward<GMOCK_ARG_(tn, 6, __VA_ARGS__)>(gmock_a6), \
+  ::std::forward<GMOCK_ARG_(tn, 7, __VA_ARGS__)>(gmock_a7)); \
   } \
   ::testing::MockSpec<__VA_ARGS__> \
       gmock_##Method(GMOCK_MATCHER_(tn, 1, __VA_ARGS__) gmock_a1, \
@@ -907,21 +893,21 @@ using internal::FunctionMocker;
           __VA_ARGS__) gmock_a5, GMOCK_ARG_(tn, 6, __VA_ARGS__) gmock_a6, \
           GMOCK_ARG_(tn, 7, __VA_ARGS__) gmock_a7, GMOCK_ARG_(tn, 8, \
           __VA_ARGS__) gmock_a8) constness { \
-    GTEST_COMPILE_ASSERT_((::testing::tuple_size<                          \
+    GTEST_COMPILE_ASSERT_((::std::tuple_size<                          \
         tn ::testing::internal::Function<__VA_ARGS__>::ArgumentTuple>::value \
             == 8), \
         this_method_does_not_take_8_arguments); \
     GMOCK_MOCKER_(8, constness, Method).SetOwnerAndName(this, #Method); \
     return GMOCK_MOCKER_(8, constness, \
-        Method).Invoke(::testing::internal::forward<GMOCK_ARG_(tn, 1, \
+        Method).Invoke(::std::forward<GMOCK_ARG_(tn, 1, \
         __VA_ARGS__)>(gmock_a1), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 5, __VA_ARGS__)>(gmock_a5), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 6, __VA_ARGS__)>(gmock_a6), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 7, __VA_ARGS__)>(gmock_a7), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 8, __VA_ARGS__)>(gmock_a8)); \
+  ::std::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
+  ::std::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
+  ::std::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4), \
+  ::std::forward<GMOCK_ARG_(tn, 5, __VA_ARGS__)>(gmock_a5), \
+  ::std::forward<GMOCK_ARG_(tn, 6, __VA_ARGS__)>(gmock_a6), \
+  ::std::forward<GMOCK_ARG_(tn, 7, __VA_ARGS__)>(gmock_a7), \
+  ::std::forward<GMOCK_ARG_(tn, 8, __VA_ARGS__)>(gmock_a8)); \
   } \
   ::testing::MockSpec<__VA_ARGS__> \
       gmock_##Method(GMOCK_MATCHER_(tn, 1, __VA_ARGS__) gmock_a1, \
@@ -962,22 +948,22 @@ using internal::FunctionMocker;
           GMOCK_ARG_(tn, 7, __VA_ARGS__) gmock_a7, GMOCK_ARG_(tn, 8, \
           __VA_ARGS__) gmock_a8, GMOCK_ARG_(tn, 9, \
           __VA_ARGS__) gmock_a9) constness { \
-    GTEST_COMPILE_ASSERT_((::testing::tuple_size<                          \
+    GTEST_COMPILE_ASSERT_((::std::tuple_size<                          \
         tn ::testing::internal::Function<__VA_ARGS__>::ArgumentTuple>::value \
             == 9), \
         this_method_does_not_take_9_arguments); \
     GMOCK_MOCKER_(9, constness, Method).SetOwnerAndName(this, #Method); \
     return GMOCK_MOCKER_(9, constness, \
-        Method).Invoke(::testing::internal::forward<GMOCK_ARG_(tn, 1, \
+        Method).Invoke(::std::forward<GMOCK_ARG_(tn, 1, \
         __VA_ARGS__)>(gmock_a1), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 5, __VA_ARGS__)>(gmock_a5), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 6, __VA_ARGS__)>(gmock_a6), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 7, __VA_ARGS__)>(gmock_a7), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 8, __VA_ARGS__)>(gmock_a8), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 9, __VA_ARGS__)>(gmock_a9)); \
+  ::std::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
+  ::std::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
+  ::std::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4), \
+  ::std::forward<GMOCK_ARG_(tn, 5, __VA_ARGS__)>(gmock_a5), \
+  ::std::forward<GMOCK_ARG_(tn, 6, __VA_ARGS__)>(gmock_a6), \
+  ::std::forward<GMOCK_ARG_(tn, 7, __VA_ARGS__)>(gmock_a7), \
+  ::std::forward<GMOCK_ARG_(tn, 8, __VA_ARGS__)>(gmock_a8), \
+  ::std::forward<GMOCK_ARG_(tn, 9, __VA_ARGS__)>(gmock_a9)); \
   } \
   ::testing::MockSpec<__VA_ARGS__> \
       gmock_##Method(GMOCK_MATCHER_(tn, 1, __VA_ARGS__) gmock_a1, \
@@ -1021,23 +1007,23 @@ using internal::FunctionMocker;
           GMOCK_ARG_(tn, 7, __VA_ARGS__) gmock_a7, GMOCK_ARG_(tn, 8, \
           __VA_ARGS__) gmock_a8, GMOCK_ARG_(tn, 9, __VA_ARGS__) gmock_a9, \
           GMOCK_ARG_(tn, 10, __VA_ARGS__) gmock_a10) constness { \
-    GTEST_COMPILE_ASSERT_((::testing::tuple_size<                          \
+    GTEST_COMPILE_ASSERT_((::std::tuple_size<                          \
         tn ::testing::internal::Function<__VA_ARGS__>::ArgumentTuple>::value \
             == 10), \
         this_method_does_not_take_10_arguments); \
     GMOCK_MOCKER_(10, constness, Method).SetOwnerAndName(this, #Method); \
     return GMOCK_MOCKER_(10, constness, \
-        Method).Invoke(::testing::internal::forward<GMOCK_ARG_(tn, 1, \
+        Method).Invoke(::std::forward<GMOCK_ARG_(tn, 1, \
         __VA_ARGS__)>(gmock_a1), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 5, __VA_ARGS__)>(gmock_a5), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 6, __VA_ARGS__)>(gmock_a6), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 7, __VA_ARGS__)>(gmock_a7), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 8, __VA_ARGS__)>(gmock_a8), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 9, __VA_ARGS__)>(gmock_a9), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 10, __VA_ARGS__)>(gmock_a10)); \
+  ::std::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
+  ::std::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
+  ::std::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4), \
+  ::std::forward<GMOCK_ARG_(tn, 5, __VA_ARGS__)>(gmock_a5), \
+  ::std::forward<GMOCK_ARG_(tn, 6, __VA_ARGS__)>(gmock_a6), \
+  ::std::forward<GMOCK_ARG_(tn, 7, __VA_ARGS__)>(gmock_a7), \
+  ::std::forward<GMOCK_ARG_(tn, 8, __VA_ARGS__)>(gmock_a8), \
+  ::std::forward<GMOCK_ARG_(tn, 9, __VA_ARGS__)>(gmock_a9), \
+  ::std::forward<GMOCK_ARG_(tn, 10, __VA_ARGS__)>(gmock_a10)); \
   } \
   ::testing::MockSpec<__VA_ARGS__> \
       gmock_##Method(GMOCK_MATCHER_(tn, 1, __VA_ARGS__) gmock_a1, \
@@ -1085,24 +1071,24 @@ using internal::FunctionMocker;
           __VA_ARGS__) gmock_a8, GMOCK_ARG_(tn, 9, __VA_ARGS__) gmock_a9, \
           GMOCK_ARG_(tn, 10, __VA_ARGS__) gmock_a10, GMOCK_ARG_(tn, 11, \
           __VA_ARGS__) gmock_a11) constness { \
-    GTEST_COMPILE_ASSERT_((::testing::tuple_size<                          \
+    GTEST_COMPILE_ASSERT_((::std::tuple_size<                          \
         tn ::testing::internal::Function<__VA_ARGS__>::ArgumentTuple>::value \
             == 11), \
         this_method_does_not_take_11_arguments); \
     GMOCK_MOCKER_(11, constness, Method).SetOwnerAndName(this, #Method); \
     return GMOCK_MOCKER_(11, constness, \
-        Method).Invoke(::testing::internal::forward<GMOCK_ARG_(tn, 1, \
+        Method).Invoke(::std::forward<GMOCK_ARG_(tn, 1, \
         __VA_ARGS__)>(gmock_a1), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 5, __VA_ARGS__)>(gmock_a5), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 6, __VA_ARGS__)>(gmock_a6), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 7, __VA_ARGS__)>(gmock_a7), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 8, __VA_ARGS__)>(gmock_a8), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 9, __VA_ARGS__)>(gmock_a9), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 10, __VA_ARGS__)>(gmock_a10), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 11, __VA_ARGS__)>(gmock_a11)); \
+  ::std::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
+  ::std::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
+  ::std::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4), \
+  ::std::forward<GMOCK_ARG_(tn, 5, __VA_ARGS__)>(gmock_a5), \
+  ::std::forward<GMOCK_ARG_(tn, 6, __VA_ARGS__)>(gmock_a6), \
+  ::std::forward<GMOCK_ARG_(tn, 7, __VA_ARGS__)>(gmock_a7), \
+  ::std::forward<GMOCK_ARG_(tn, 8, __VA_ARGS__)>(gmock_a8), \
+  ::std::forward<GMOCK_ARG_(tn, 9, __VA_ARGS__)>(gmock_a9), \
+  ::std::forward<GMOCK_ARG_(tn, 10, __VA_ARGS__)>(gmock_a10), \
+  ::std::forward<GMOCK_ARG_(tn, 11, __VA_ARGS__)>(gmock_a11)); \
   } \
   ::testing::MockSpec<__VA_ARGS__> \
       gmock_##Method(GMOCK_MATCHER_(tn, 1, __VA_ARGS__) gmock_a1, \
@@ -1153,25 +1139,25 @@ using internal::FunctionMocker;
           GMOCK_ARG_(tn, 10, __VA_ARGS__) gmock_a10, GMOCK_ARG_(tn, 11, \
           __VA_ARGS__) gmock_a11, GMOCK_ARG_(tn, 12, \
           __VA_ARGS__) gmock_a12) constness { \
-    GTEST_COMPILE_ASSERT_((::testing::tuple_size<                          \
+    GTEST_COMPILE_ASSERT_((::std::tuple_size<                          \
         tn ::testing::internal::Function<__VA_ARGS__>::ArgumentTuple>::value \
             == 12), \
         this_method_does_not_take_12_arguments); \
     GMOCK_MOCKER_(12, constness, Method).SetOwnerAndName(this, #Method); \
     return GMOCK_MOCKER_(12, constness, \
-        Method).Invoke(::testing::internal::forward<GMOCK_ARG_(tn, 1, \
+        Method).Invoke(::std::forward<GMOCK_ARG_(tn, 1, \
         __VA_ARGS__)>(gmock_a1), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 5, __VA_ARGS__)>(gmock_a5), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 6, __VA_ARGS__)>(gmock_a6), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 7, __VA_ARGS__)>(gmock_a7), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 8, __VA_ARGS__)>(gmock_a8), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 9, __VA_ARGS__)>(gmock_a9), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 10, __VA_ARGS__)>(gmock_a10), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 11, __VA_ARGS__)>(gmock_a11), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 12, __VA_ARGS__)>(gmock_a12)); \
+  ::std::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
+  ::std::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
+  ::std::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4), \
+  ::std::forward<GMOCK_ARG_(tn, 5, __VA_ARGS__)>(gmock_a5), \
+  ::std::forward<GMOCK_ARG_(tn, 6, __VA_ARGS__)>(gmock_a6), \
+  ::std::forward<GMOCK_ARG_(tn, 7, __VA_ARGS__)>(gmock_a7), \
+  ::std::forward<GMOCK_ARG_(tn, 8, __VA_ARGS__)>(gmock_a8), \
+  ::std::forward<GMOCK_ARG_(tn, 9, __VA_ARGS__)>(gmock_a9), \
+  ::std::forward<GMOCK_ARG_(tn, 10, __VA_ARGS__)>(gmock_a10), \
+  ::std::forward<GMOCK_ARG_(tn, 11, __VA_ARGS__)>(gmock_a11), \
+  ::std::forward<GMOCK_ARG_(tn, 12, __VA_ARGS__)>(gmock_a12)); \
   } \
   ::testing::MockSpec<__VA_ARGS__> \
       gmock_##Method(GMOCK_MATCHER_(tn, 1, __VA_ARGS__) gmock_a1, \
@@ -1224,26 +1210,26 @@ using internal::FunctionMocker;
           GMOCK_ARG_(tn, 10, __VA_ARGS__) gmock_a10, GMOCK_ARG_(tn, 11, \
           __VA_ARGS__) gmock_a11, GMOCK_ARG_(tn, 12, __VA_ARGS__) gmock_a12, \
           GMOCK_ARG_(tn, 13, __VA_ARGS__) gmock_a13) constness { \
-    GTEST_COMPILE_ASSERT_((::testing::tuple_size<                          \
+    GTEST_COMPILE_ASSERT_((::std::tuple_size<                          \
         tn ::testing::internal::Function<__VA_ARGS__>::ArgumentTuple>::value \
             == 13), \
         this_method_does_not_take_13_arguments); \
     GMOCK_MOCKER_(13, constness, Method).SetOwnerAndName(this, #Method); \
     return GMOCK_MOCKER_(13, constness, \
-        Method).Invoke(::testing::internal::forward<GMOCK_ARG_(tn, 1, \
+        Method).Invoke(::std::forward<GMOCK_ARG_(tn, 1, \
         __VA_ARGS__)>(gmock_a1), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 5, __VA_ARGS__)>(gmock_a5), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 6, __VA_ARGS__)>(gmock_a6), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 7, __VA_ARGS__)>(gmock_a7), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 8, __VA_ARGS__)>(gmock_a8), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 9, __VA_ARGS__)>(gmock_a9), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 10, __VA_ARGS__)>(gmock_a10), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 11, __VA_ARGS__)>(gmock_a11), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 12, __VA_ARGS__)>(gmock_a12), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 13, __VA_ARGS__)>(gmock_a13)); \
+  ::std::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
+  ::std::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
+  ::std::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4), \
+  ::std::forward<GMOCK_ARG_(tn, 5, __VA_ARGS__)>(gmock_a5), \
+  ::std::forward<GMOCK_ARG_(tn, 6, __VA_ARGS__)>(gmock_a6), \
+  ::std::forward<GMOCK_ARG_(tn, 7, __VA_ARGS__)>(gmock_a7), \
+  ::std::forward<GMOCK_ARG_(tn, 8, __VA_ARGS__)>(gmock_a8), \
+  ::std::forward<GMOCK_ARG_(tn, 9, __VA_ARGS__)>(gmock_a9), \
+  ::std::forward<GMOCK_ARG_(tn, 10, __VA_ARGS__)>(gmock_a10), \
+  ::std::forward<GMOCK_ARG_(tn, 11, __VA_ARGS__)>(gmock_a11), \
+  ::std::forward<GMOCK_ARG_(tn, 12, __VA_ARGS__)>(gmock_a12), \
+  ::std::forward<GMOCK_ARG_(tn, 13, __VA_ARGS__)>(gmock_a13)); \
   } \
   ::testing::MockSpec<__VA_ARGS__> \
       gmock_##Method(GMOCK_MATCHER_(tn, 1, __VA_ARGS__) gmock_a1, \
@@ -1299,27 +1285,27 @@ using internal::FunctionMocker;
           __VA_ARGS__) gmock_a11, GMOCK_ARG_(tn, 12, __VA_ARGS__) gmock_a12, \
           GMOCK_ARG_(tn, 13, __VA_ARGS__) gmock_a13, GMOCK_ARG_(tn, 14, \
           __VA_ARGS__) gmock_a14) constness { \
-    GTEST_COMPILE_ASSERT_((::testing::tuple_size<                          \
+    GTEST_COMPILE_ASSERT_((::std::tuple_size<                          \
         tn ::testing::internal::Function<__VA_ARGS__>::ArgumentTuple>::value \
             == 14), \
         this_method_does_not_take_14_arguments); \
     GMOCK_MOCKER_(14, constness, Method).SetOwnerAndName(this, #Method); \
     return GMOCK_MOCKER_(14, constness, \
-        Method).Invoke(::testing::internal::forward<GMOCK_ARG_(tn, 1, \
+        Method).Invoke(::std::forward<GMOCK_ARG_(tn, 1, \
         __VA_ARGS__)>(gmock_a1), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 5, __VA_ARGS__)>(gmock_a5), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 6, __VA_ARGS__)>(gmock_a6), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 7, __VA_ARGS__)>(gmock_a7), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 8, __VA_ARGS__)>(gmock_a8), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 9, __VA_ARGS__)>(gmock_a9), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 10, __VA_ARGS__)>(gmock_a10), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 11, __VA_ARGS__)>(gmock_a11), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 12, __VA_ARGS__)>(gmock_a12), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 13, __VA_ARGS__)>(gmock_a13), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 14, __VA_ARGS__)>(gmock_a14)); \
+  ::std::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
+  ::std::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
+  ::std::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4), \
+  ::std::forward<GMOCK_ARG_(tn, 5, __VA_ARGS__)>(gmock_a5), \
+  ::std::forward<GMOCK_ARG_(tn, 6, __VA_ARGS__)>(gmock_a6), \
+  ::std::forward<GMOCK_ARG_(tn, 7, __VA_ARGS__)>(gmock_a7), \
+  ::std::forward<GMOCK_ARG_(tn, 8, __VA_ARGS__)>(gmock_a8), \
+  ::std::forward<GMOCK_ARG_(tn, 9, __VA_ARGS__)>(gmock_a9), \
+  ::std::forward<GMOCK_ARG_(tn, 10, __VA_ARGS__)>(gmock_a10), \
+  ::std::forward<GMOCK_ARG_(tn, 11, __VA_ARGS__)>(gmock_a11), \
+  ::std::forward<GMOCK_ARG_(tn, 12, __VA_ARGS__)>(gmock_a12), \
+  ::std::forward<GMOCK_ARG_(tn, 13, __VA_ARGS__)>(gmock_a13), \
+  ::std::forward<GMOCK_ARG_(tn, 14, __VA_ARGS__)>(gmock_a14)); \
   } \
   ::testing::MockSpec<__VA_ARGS__> \
       gmock_##Method(GMOCK_MATCHER_(tn, 1, __VA_ARGS__) gmock_a1, \
@@ -1378,28 +1364,28 @@ using internal::FunctionMocker;
           GMOCK_ARG_(tn, 13, __VA_ARGS__) gmock_a13, GMOCK_ARG_(tn, 14, \
           __VA_ARGS__) gmock_a14, GMOCK_ARG_(tn, 15, \
           __VA_ARGS__) gmock_a15) constness { \
-    GTEST_COMPILE_ASSERT_((::testing::tuple_size<                          \
+    GTEST_COMPILE_ASSERT_((::std::tuple_size<                          \
         tn ::testing::internal::Function<__VA_ARGS__>::ArgumentTuple>::value \
             == 15), \
         this_method_does_not_take_15_arguments); \
     GMOCK_MOCKER_(15, constness, Method).SetOwnerAndName(this, #Method); \
     return GMOCK_MOCKER_(15, constness, \
-        Method).Invoke(::testing::internal::forward<GMOCK_ARG_(tn, 1, \
+        Method).Invoke(::std::forward<GMOCK_ARG_(tn, 1, \
         __VA_ARGS__)>(gmock_a1), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 5, __VA_ARGS__)>(gmock_a5), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 6, __VA_ARGS__)>(gmock_a6), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 7, __VA_ARGS__)>(gmock_a7), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 8, __VA_ARGS__)>(gmock_a8), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 9, __VA_ARGS__)>(gmock_a9), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 10, __VA_ARGS__)>(gmock_a10), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 11, __VA_ARGS__)>(gmock_a11), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 12, __VA_ARGS__)>(gmock_a12), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 13, __VA_ARGS__)>(gmock_a13), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 14, __VA_ARGS__)>(gmock_a14), \
-  ::testing::internal::forward<GMOCK_ARG_(tn, 15, __VA_ARGS__)>(gmock_a15)); \
+  ::std::forward<GMOCK_ARG_(tn, 2, __VA_ARGS__)>(gmock_a2), \
+  ::std::forward<GMOCK_ARG_(tn, 3, __VA_ARGS__)>(gmock_a3), \
+  ::std::forward<GMOCK_ARG_(tn, 4, __VA_ARGS__)>(gmock_a4), \
+  ::std::forward<GMOCK_ARG_(tn, 5, __VA_ARGS__)>(gmock_a5), \
+  ::std::forward<GMOCK_ARG_(tn, 6, __VA_ARGS__)>(gmock_a6), \
+  ::std::forward<GMOCK_ARG_(tn, 7, __VA_ARGS__)>(gmock_a7), \
+  ::std::forward<GMOCK_ARG_(tn, 8, __VA_ARGS__)>(gmock_a8), \
+  ::std::forward<GMOCK_ARG_(tn, 9, __VA_ARGS__)>(gmock_a9), \
+  ::std::forward<GMOCK_ARG_(tn, 10, __VA_ARGS__)>(gmock_a10), \
+  ::std::forward<GMOCK_ARG_(tn, 11, __VA_ARGS__)>(gmock_a11), \
+  ::std::forward<GMOCK_ARG_(tn, 12, __VA_ARGS__)>(gmock_a12), \
+  ::std::forward<GMOCK_ARG_(tn, 13, __VA_ARGS__)>(gmock_a13), \
+  ::std::forward<GMOCK_ARG_(tn, 14, __VA_ARGS__)>(gmock_a14), \
+  ::std::forward<GMOCK_ARG_(tn, 15, __VA_ARGS__)>(gmock_a15)); \
   } \
   ::testing::MockSpec<__VA_ARGS__> \
       gmock_##Method(GMOCK_MATCHER_(tn, 1, __VA_ARGS__) gmock_a1, \
@@ -1740,7 +1726,7 @@ class MockFunction<R(A0)> {
 #if GTEST_HAS_STD_FUNCTION_
   ::std::function<R(A0)> AsStdFunction() {
     return [this](A0 a0) -> R {
-      return this->Call(::std::move(a0));
+      return this->Call(::std::forward<A0>(a0));
     };
   }
 #endif  // GTEST_HAS_STD_FUNCTION_
@@ -1759,7 +1745,7 @@ class MockFunction<R(A0, A1)> {
 #if GTEST_HAS_STD_FUNCTION_
   ::std::function<R(A0, A1)> AsStdFunction() {
     return [this](A0 a0, A1 a1) -> R {
-      return this->Call(::std::move(a0), ::std::move(a1));
+      return this->Call(::std::forward<A0>(a0), ::std::forward<A1>(a1));
     };
   }
 #endif  // GTEST_HAS_STD_FUNCTION_
@@ -1778,7 +1764,8 @@ class MockFunction<R(A0, A1, A2)> {
 #if GTEST_HAS_STD_FUNCTION_
   ::std::function<R(A0, A1, A2)> AsStdFunction() {
     return [this](A0 a0, A1 a1, A2 a2) -> R {
-      return this->Call(::std::move(a0), ::std::move(a1), ::std::move(a2));
+      return this->Call(::std::forward<A0>(a0), ::std::forward<A1>(a1),
+          ::std::forward<A2>(a2));
     };
   }
 #endif  // GTEST_HAS_STD_FUNCTION_
@@ -1797,8 +1784,8 @@ class MockFunction<R(A0, A1, A2, A3)> {
 #if GTEST_HAS_STD_FUNCTION_
   ::std::function<R(A0, A1, A2, A3)> AsStdFunction() {
     return [this](A0 a0, A1 a1, A2 a2, A3 a3) -> R {
-      return this->Call(::std::move(a0), ::std::move(a1), ::std::move(a2),
-          ::std::move(a3));
+      return this->Call(::std::forward<A0>(a0), ::std::forward<A1>(a1),
+          ::std::forward<A2>(a2), ::std::forward<A3>(a3));
     };
   }
 #endif  // GTEST_HAS_STD_FUNCTION_
@@ -1818,8 +1805,9 @@ class MockFunction<R(A0, A1, A2, A3, A4)> {
 #if GTEST_HAS_STD_FUNCTION_
   ::std::function<R(A0, A1, A2, A3, A4)> AsStdFunction() {
     return [this](A0 a0, A1 a1, A2 a2, A3 a3, A4 a4) -> R {
-      return this->Call(::std::move(a0), ::std::move(a1), ::std::move(a2),
-          ::std::move(a3), ::std::move(a4));
+      return this->Call(::std::forward<A0>(a0), ::std::forward<A1>(a1),
+          ::std::forward<A2>(a2), ::std::forward<A3>(a3),
+          ::std::forward<A4>(a4));
     };
   }
 #endif  // GTEST_HAS_STD_FUNCTION_
@@ -1839,8 +1827,9 @@ class MockFunction<R(A0, A1, A2, A3, A4, A5)> {
 #if GTEST_HAS_STD_FUNCTION_
   ::std::function<R(A0, A1, A2, A3, A4, A5)> AsStdFunction() {
     return [this](A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5) -> R {
-      return this->Call(::std::move(a0), ::std::move(a1), ::std::move(a2),
-          ::std::move(a3), ::std::move(a4), ::std::move(a5));
+      return this->Call(::std::forward<A0>(a0), ::std::forward<A1>(a1),
+          ::std::forward<A2>(a2), ::std::forward<A3>(a3),
+          ::std::forward<A4>(a4), ::std::forward<A5>(a5));
     };
   }
 #endif  // GTEST_HAS_STD_FUNCTION_
@@ -1860,8 +1849,10 @@ class MockFunction<R(A0, A1, A2, A3, A4, A5, A6)> {
 #if GTEST_HAS_STD_FUNCTION_
   ::std::function<R(A0, A1, A2, A3, A4, A5, A6)> AsStdFunction() {
     return [this](A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6) -> R {
-      return this->Call(::std::move(a0), ::std::move(a1), ::std::move(a2),
-          ::std::move(a3), ::std::move(a4), ::std::move(a5), ::std::move(a6));
+      return this->Call(::std::forward<A0>(a0), ::std::forward<A1>(a1),
+          ::std::forward<A2>(a2), ::std::forward<A3>(a3),
+          ::std::forward<A4>(a4), ::std::forward<A5>(a5),
+          ::std::forward<A6>(a6));
     };
   }
 #endif  // GTEST_HAS_STD_FUNCTION_
@@ -1881,9 +1872,10 @@ class MockFunction<R(A0, A1, A2, A3, A4, A5, A6, A7)> {
 #if GTEST_HAS_STD_FUNCTION_
   ::std::function<R(A0, A1, A2, A3, A4, A5, A6, A7)> AsStdFunction() {
     return [this](A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7) -> R {
-      return this->Call(::std::move(a0), ::std::move(a1), ::std::move(a2),
-          ::std::move(a3), ::std::move(a4), ::std::move(a5), ::std::move(a6),
-          ::std::move(a7));
+      return this->Call(::std::forward<A0>(a0), ::std::forward<A1>(a1),
+          ::std::forward<A2>(a2), ::std::forward<A3>(a3),
+          ::std::forward<A4>(a4), ::std::forward<A5>(a5),
+          ::std::forward<A6>(a6), ::std::forward<A7>(a7));
     };
   }
 #endif  // GTEST_HAS_STD_FUNCTION_
@@ -1904,9 +1896,11 @@ class MockFunction<R(A0, A1, A2, A3, A4, A5, A6, A7, A8)> {
   ::std::function<R(A0, A1, A2, A3, A4, A5, A6, A7, A8)> AsStdFunction() {
     return [this](A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7,
         A8 a8) -> R {
-      return this->Call(::std::move(a0), ::std::move(a1), ::std::move(a2),
-          ::std::move(a3), ::std::move(a4), ::std::move(a5), ::std::move(a6),
-          ::std::move(a7), ::std::move(a8));
+      return this->Call(::std::forward<A0>(a0), ::std::forward<A1>(a1),
+          ::std::forward<A2>(a2), ::std::forward<A3>(a3),
+          ::std::forward<A4>(a4), ::std::forward<A5>(a5),
+          ::std::forward<A6>(a6), ::std::forward<A7>(a7),
+          ::std::forward<A8>(a8));
     };
   }
 #endif  // GTEST_HAS_STD_FUNCTION_
@@ -1928,9 +1922,11 @@ class MockFunction<R(A0, A1, A2, A3, A4, A5, A6, A7, A8, A9)> {
   ::std::function<R(A0, A1, A2, A3, A4, A5, A6, A7, A8, A9)> AsStdFunction() {
     return [this](A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7,
         A8 a8, A9 a9) -> R {
-      return this->Call(::std::move(a0), ::std::move(a1), ::std::move(a2),
-          ::std::move(a3), ::std::move(a4), ::std::move(a5), ::std::move(a6),
-          ::std::move(a7), ::std::move(a8), ::std::move(a9));
+      return this->Call(::std::forward<A0>(a0), ::std::forward<A1>(a1),
+          ::std::forward<A2>(a2), ::std::forward<A3>(a3),
+          ::std::forward<A4>(a4), ::std::forward<A5>(a5),
+          ::std::forward<A6>(a6), ::std::forward<A7>(a7),
+          ::std::forward<A8>(a8), ::std::forward<A9>(a9));
     };
   }
 #endif  // GTEST_HAS_STD_FUNCTION_
@@ -1953,9 +1949,12 @@ class MockFunction<R(A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10)> {
       A10)> AsStdFunction() {
     return [this](A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7,
         A8 a8, A9 a9, A10 a10) -> R {
-      return this->Call(::std::move(a0), ::std::move(a1), ::std::move(a2),
-          ::std::move(a3), ::std::move(a4), ::std::move(a5), ::std::move(a6),
-          ::std::move(a7), ::std::move(a8), ::std::move(a9), ::std::move(a10));
+      return this->Call(::std::forward<A0>(a0), ::std::forward<A1>(a1),
+          ::std::forward<A2>(a2), ::std::forward<A3>(a3),
+          ::std::forward<A4>(a4), ::std::forward<A5>(a5),
+          ::std::forward<A6>(a6), ::std::forward<A7>(a7),
+          ::std::forward<A8>(a8), ::std::forward<A9>(a9),
+          ::std::forward<A10>(a10));
     };
   }
 #endif  // GTEST_HAS_STD_FUNCTION_
@@ -1978,10 +1977,12 @@ class MockFunction<R(A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11)> {
       A11)> AsStdFunction() {
     return [this](A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7,
         A8 a8, A9 a9, A10 a10, A11 a11) -> R {
-      return this->Call(::std::move(a0), ::std::move(a1), ::std::move(a2),
-          ::std::move(a3), ::std::move(a4), ::std::move(a5), ::std::move(a6),
-          ::std::move(a7), ::std::move(a8), ::std::move(a9), ::std::move(a10),
-          ::std::move(a11));
+      return this->Call(::std::forward<A0>(a0), ::std::forward<A1>(a1),
+          ::std::forward<A2>(a2), ::std::forward<A3>(a3),
+          ::std::forward<A4>(a4), ::std::forward<A5>(a5),
+          ::std::forward<A6>(a6), ::std::forward<A7>(a7),
+          ::std::forward<A8>(a8), ::std::forward<A9>(a9),
+          ::std::forward<A10>(a10), ::std::forward<A11>(a11));
     };
   }
 #endif  // GTEST_HAS_STD_FUNCTION_
@@ -2005,10 +2006,13 @@ class MockFunction<R(A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12)> {
       A12)> AsStdFunction() {
     return [this](A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7,
         A8 a8, A9 a9, A10 a10, A11 a11, A12 a12) -> R {
-      return this->Call(::std::move(a0), ::std::move(a1), ::std::move(a2),
-          ::std::move(a3), ::std::move(a4), ::std::move(a5), ::std::move(a6),
-          ::std::move(a7), ::std::move(a8), ::std::move(a9), ::std::move(a10),
-          ::std::move(a11), ::std::move(a12));
+      return this->Call(::std::forward<A0>(a0), ::std::forward<A1>(a1),
+          ::std::forward<A2>(a2), ::std::forward<A3>(a3),
+          ::std::forward<A4>(a4), ::std::forward<A5>(a5),
+          ::std::forward<A6>(a6), ::std::forward<A7>(a7),
+          ::std::forward<A8>(a8), ::std::forward<A9>(a9),
+          ::std::forward<A10>(a10), ::std::forward<A11>(a11),
+          ::std::forward<A12>(a12));
     };
   }
 #endif  // GTEST_HAS_STD_FUNCTION_
@@ -2033,10 +2037,13 @@ class MockFunction<R(A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12,
       A13)> AsStdFunction() {
     return [this](A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7,
         A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13) -> R {
-      return this->Call(::std::move(a0), ::std::move(a1), ::std::move(a2),
-          ::std::move(a3), ::std::move(a4), ::std::move(a5), ::std::move(a6),
-          ::std::move(a7), ::std::move(a8), ::std::move(a9), ::std::move(a10),
-          ::std::move(a11), ::std::move(a12), ::std::move(a13));
+      return this->Call(::std::forward<A0>(a0), ::std::forward<A1>(a1),
+          ::std::forward<A2>(a2), ::std::forward<A3>(a3),
+          ::std::forward<A4>(a4), ::std::forward<A5>(a5),
+          ::std::forward<A6>(a6), ::std::forward<A7>(a7),
+          ::std::forward<A8>(a8), ::std::forward<A9>(a9),
+          ::std::forward<A10>(a10), ::std::forward<A11>(a11),
+          ::std::forward<A12>(a12), ::std::forward<A13>(a13));
     };
   }
 #endif  // GTEST_HAS_STD_FUNCTION_
@@ -2062,11 +2069,14 @@ class MockFunction<R(A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12,
       A14)> AsStdFunction() {
     return [this](A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7,
         A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14) -> R {
-      return this->Call(::std::move(a0), ::std::move(a1), ::std::move(a2),
-          ::std::move(a3), ::std::move(a4), ::std::move(a5), ::std::move(a6),
-          ::std::move(a7), ::std::move(a8), ::std::move(a9), ::std::move(a10),
-          ::std::move(a11), ::std::move(a12), ::std::move(a13),
-          ::std::move(a14));
+      return this->Call(::std::forward<A0>(a0), ::std::forward<A1>(a1),
+          ::std::forward<A2>(a2), ::std::forward<A3>(a3),
+          ::std::forward<A4>(a4), ::std::forward<A5>(a5),
+          ::std::forward<A6>(a6), ::std::forward<A7>(a7),
+          ::std::forward<A8>(a8), ::std::forward<A9>(a9),
+          ::std::forward<A10>(a10), ::std::forward<A11>(a11),
+          ::std::forward<A12>(a12), ::std::forward<A13>(a13),
+          ::std::forward<A14>(a14));
     };
   }
 #endif  // GTEST_HAS_STD_FUNCTION_
